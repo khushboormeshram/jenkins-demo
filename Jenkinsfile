@@ -28,7 +28,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'jenkins-demo', url: 'https://github.com/khushboorm/jenkins-demo.git'
+                git branch: 'docker-branch', url: 'https://github.com/khushboorm/jenkins-demo.git'
             }
         }
 

@@ -28,6 +28,7 @@ connectDB();
 // Middleware
 app.use(cors({
     origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    // origin: '*',
     credentials: true
 }));
 
@@ -55,8 +56,8 @@ app.get('/api/health', (req, res) => {
 
 // Test upload endpoint
 app.get('/api/upload/test', (req, res) => {
-    res.json({ 
-        status: 'OK', 
+    res.json({
+        status: 'OK',
         message: 'Upload routes are working',
         uploadDir: path.join(__dirname, 'uploads/images')
     });
@@ -67,12 +68,12 @@ app.use(errorHandler);
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on port ${PORT}`);
-    
+
     // Check Judge0 configuration
     console.log('DEBUG: All env vars related to JUDGE0:', Object.keys(process.env).filter(key => key.includes('JUDGE')));
     console.log('DEBUG: JUDGE0_API_URL value:', process.env.JUDGE0_API_URL);
     console.log('DEBUG: JUDGE0_API_URL type:', typeof process.env.JUDGE0_API_URL);
-    
+
     if (!process.env.JUDGE0_API_URL) {
         console.warn('⚠️  WARNING: JUDGE0_API_URL is not configured!');
         console.warn('   Code execution will not work until you set JUDGE0_API_URL in your .env file');
